@@ -19,3 +19,9 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ignore IDE files
+.idea
+
+# Ignore Gemfile.lock
+Gemfile.lock
