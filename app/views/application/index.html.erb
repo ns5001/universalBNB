@@ -5,9 +5,22 @@
     <title>Universal BNB</title>
   </head>
   <body>
-    
+
     <div class="">
       <h2>Welcome!</h2>
+    </div>
+
+    <div class="services">
+      <table>
+        <%=Service.all.each do |service| %>
+          <tr>
+            <td>Name:</td>
+            <td><%= service.name %></td>
+            <td>Price:</td>
+            <td><%= service.price %></td>
+          <tr>
+        <% end %>
+      </table>
     </div>
 
   </body>

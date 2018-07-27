@@ -21,17 +21,10 @@
               <li><a class="page-scroll" href="/logout" method="delete">Sign Out</a></li>
               <li><%= link_to "Home", root_path %></li>
                       <% if current_user %>
-
-                    <li><%= link_to "Forum", plans_path %></li>
-                    <li><%= link_to "Conquer Profile", user_path(current_user) %></li>
-                    <li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
-
                       <% end %>
                   <% else %>
-
                     <li><a class="page-scroll" href="/users/sign_in" method="delete">Login</a></li>
                     <li><a class="page-scroll" href="/users/sign_up" method="delete">Register</a></li>
-
                   <% end %>
             </ul>
         </div>
