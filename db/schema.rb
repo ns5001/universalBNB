@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20180722012907) do
   enable_extension "plpgsql"
 
   create_table "services", force: :cascade do |t|
+<<<<<<< HEAD
     t.string   "service_type"
     t.text     "detail"
     t.string   "name"
@@ -28,6 +29,15 @@ ActiveRecord::Schema.define(version: 20180722012907) do
   create_table "user_services", force: :cascade do |t|
     t.integer  "seller_id"
     t.integer  "buyer_id"
+=======
+    t.string   "type",       default: "", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "user_services", force: :cascade do |t|
+    t.integer  "user_id"
+>>>>>>> 0ab7c401a8b97570ef0a6a3af6df7f166d220781
     t.integer  "service_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
