@@ -24,6 +24,7 @@ gem 'active_model_serializers'
 
 
 gem 'pry'
+gem 'webpacker'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

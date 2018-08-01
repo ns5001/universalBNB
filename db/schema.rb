@@ -44,6 +44,12 @@ ActiveRecord::Schema.define(version: 20180722012907) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "firstName"
+    t.string   "lastName"
+    t.integer  "age"
+    t.string   "gender"
+    t.string   "bio"
+    t.string   "username"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
