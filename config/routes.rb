@@ -12,4 +12,9 @@ Rails.application.routes.draw do
   resources :services
   resources :users
 
+  get '/users/sold', to: "users#getSold"
+  get '/users/bought', to: "users#getBought"
+  resources :messages
+  resources :connections
+
 end

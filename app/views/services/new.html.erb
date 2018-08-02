@@ -1,0 +1,15 @@
+<%= form_for Service.new, controller: 'services', action: 'create' do |f| %>
+  <%= f.label :"Service Type" %>
+  <%= f.text_field :first_name %>
+
+  <%= f.label :"Detail" %>
+  <%= f.text_field :last_name %>
+
+  <%= f.label :"Name of service" %>
+  <%= f.text_field :username %>
+
+  <%= f.label :"Price" %>
+  <%= f.text_field :email %>
+
+  <%= f.submit "create" %>
+<% end %>

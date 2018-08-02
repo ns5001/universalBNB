@@ -11,4 +11,18 @@ class ServicesController < ApplicationController
     end
   end
 
+  def create
+    Service.create(service_params)
+    redirect_to "/users/show"
+  end
+
+  def destroy
+    service = Service.find_by(id: params[:id])
+    service.destroy
+  end
+
+  def service_params
+    params.require(:service).permit(:service_type, :detail, :name, :price, :user_id)
+  end
+
 end
