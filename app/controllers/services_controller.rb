@@ -12,8 +12,13 @@ class ServicesController < ApplicationController
   end
 
   def create
+    binding.pry
     Service.create(service_params)
     redirect_to "/users/show"
+  end
+
+  def new
+    @user = current_user
   end
 
   def destroy

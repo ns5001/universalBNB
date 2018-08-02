@@ -9,12 +9,14 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :registrations => "registrations" }
 
-  resources :services
   resources :users
-
+  resources :services
+  
   get '/users/sold', to: "users#getSold"
   get '/users/bought', to: "users#getBought"
   resources :messages
   resources :connections
+
+  get '/services/new', to: "services#new"
 
 end
