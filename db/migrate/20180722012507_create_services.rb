@@ -6,6 +6,7 @@ class CreateServices < ActiveRecord::Migration[5.0]
       t.string :name
       t.integer :price
       t.integer :user_id
+      t.boolean :purchased
       t.timestamps
     end
   end

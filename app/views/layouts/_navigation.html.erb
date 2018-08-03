@@ -19,7 +19,6 @@
             <ul class="nav navbar-nav navbar-right">
                   <% if user_signed_in? %>
               <li><a class="page-scroll" href="/logout" method="delete">Sign Out</a></li>
-              <li><%= link_to "Home", root_path %></li>
                       <% if current_user %>
                       <li><%= link_to "MyProfile", user_path(current_user) %></li>
                       <% else %>

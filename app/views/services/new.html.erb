@@ -12,5 +12,6 @@
   <%= f.text_field :price %>
   <br><br>
   <%= f.hidden_field :user_id, :value => current_user.id %>
+  <%= f.hidden_field :purchased, :value => false %>
   <%= f.submit "create" %>
 <% end %>
