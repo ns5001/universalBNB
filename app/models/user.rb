@@ -1,8 +1,11 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+
+  has_attached_file :profile_pic, styles: { medium: "300x300>", thumb: "100x100>" }
+  validates_attachment_content_type :profile_pic, content_type: /\Aimage\/.*\z/
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  validates_uniqueness_of :email
 
   has_many :services
   has_many :user_services
