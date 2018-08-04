@@ -1,6 +1,6 @@
 <%= form_for Service.new, controller: 'services', action: 'create' do |f| %>
   <%= f.label :"Service Type" %>
-  <%= f.text_field :service_type %>
+  <%= f.select :service_type, ['Student Seeking Research', 'Research Opportunity', 'Apartment']%>
   <br><br>
   <%= f.label :"Name of service" %>
   <%= f.text_field :name %>

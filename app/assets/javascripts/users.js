@@ -1,9 +1,10 @@
 $(document).on('turbolinks:load', function() {
   getSold();
   getBought();
-  displayReceivedMessages()
-  getInProgressBuying()
-  getInProgressSelling()
+  displayReceivedMessages();
+  getInProgressBuying();
+  getInProgressSelling();
+  replyMessage();
 })
 
 function getSold() {
@@ -39,22 +40,28 @@ function getInProgressSelling() {
       type: 'get',
       url: '/inProgressSelling',
       success: function(response) {
-debugger;
-        var html = `<table>
-        <tr>
-          <th>Name</th>
-          <th>Buyer</th>
-          <th>Price</th>
-        </tr>`
+        var html = ``
         for (var i=0;i<response.length;i++) {
-          html += `<tr>${response[i].service.name}</tr>`
+          html += `<div id="inProgress${response[i].id}"><tr>${response[i].service.name}</tr>`
           html += `<tr>${response[i].buyer.firstName} ${response[i].buyer.lastName}</tr>`
           html += `<tr>${response[i].service.price}</tr>`
+          html += `<button onClick="approve_submit(${response[i].id})">Approve</button></div>`
         }
-        html += `</table>`
         $('#inProgressSelling').append(html)
       }
     })
+}
+
+function approve_submit(service_id) {
+  debugger;
+  $("#inProgress"+service_id)[0].hidden = true;
+  $.ajax({
+    type: 'get',
+    url : "/userService/approve/"+service_id,
+    success: function(response) {
+      alert("Approved!");
+    }
+  })
 }
 
 
@@ -83,22 +90,49 @@ function displayReceivedMessages() {
 	})
 }
 
+function replyMessage() {
+		$(document).on('click','.reply-message',function(event) {
+      debugger;
+      event.preventDefault()
+
+      var sendInfo = {
+          content: $("#reply")[0].value
+          message_id: $(".message_id")[0].value
+      };
+      debugger;
+		$(`div#received-message-${this.id}`).toggle()
+		$.ajax({
+			type: 'get',
+			url: '/messages/createReply',
+			datatype: "json",
+			data: sendInfo,
+			success: function(response) {
+				alert('Reply Sent!')
+			}
+		})
+	})
+}
+
 function receivedMessages(response) {
+  	debugger
 	var html = ''
-	$('#inbox')[0].innerHtml = ``
+	$('.receivedMessages').html(``)
 
 	for(var i=0;i<response.length;i++) {
+
 		html += `<div id="received-message-${response[i].id}"<p>You receieved a message from ${response[i].user.firstName} ${response[i].user.lastName}</p>`
 		html += `<p><h4>${response[i].content}</h4></p>`
 
-		html += `<input type="hidden" name="message_id" class="message_id" value="${response[i].id}">`
-		html += `<input type="text", name="content">`
+    html += `<form>`
+		html += `<input type="hidden" class="message_id" value="${response[i].id}">`
+		html += `<input id="reply" type="text", name="content">`
 		html += `<button class="reply-message" id="${response[i].id}" type="submit">Reply</button>`
+    html += `</form>`
 
 		html += `<button type="submit" class="delete-received-message" id="${response[i].id}">delete</button>`
 
 		html += `</div>`
 	}
 
-	$('#inbox')[0].innerHTML = html
+	$('.receivedMessages').append(html)
 }
