@@ -156,7 +156,7 @@ function displaySentMessages() {
 function displayReceivedMessages() {
 	$.ajax({
 		type: 'get',
-		url: '/messages/received.json',
+		url: '/messages/received',
 		success: function(response) {
 			receivedMessages(response)
 		}
@@ -167,7 +167,7 @@ function displayReceivedMessages() {
 function receivedMessages(response) {
 	var html = ''
 	$('.receivedMessages').html('')
-
+	 debugger;
 	for(var i=0;i<response.length;i++) {
 		html += `<div id="received-message-${response[i].id}"<p>You receieved a message from ${response[i].user.name}</p>`
 		html += `<p> <img src="${response[i].user.profile_pic}"></p>`
@@ -192,6 +192,7 @@ function sentMessages(response) {
 	var html = ''
 	$('.sentMessages').html('')
 	for(var i=0;i<response.length;i++) {
+		debugger;
 		html += `<div id="sent-message-${response[i].id}">
 						<p>You sent a message to ${response[i].receiver.name}</p>`
 		html += `<p> <img src="${response[i].receiver.profile_pic}"></p>`

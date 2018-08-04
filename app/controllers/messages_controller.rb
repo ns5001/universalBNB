@@ -54,6 +54,10 @@ class MessagesController < ApplicationController
     message.destroy
   end
 
+  def createReply
+    binding.pry
+  end
+
   def new
     @user = current_user
   end

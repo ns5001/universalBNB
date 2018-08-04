@@ -55,12 +55,22 @@ class User < ApplicationRecord
     ary
   end
 
-  def friends_order
+
+  def potentialConnections
     ary = []
-    self.friends.each do |friend|
-      ary << friend.receiver
+
+    UserService.where(buyer_id:self.id, final:false).each do |connection|
+      ary << User.find_by(id: connection.seller_id)
     end
-    ary.sort
+
+    UserService.where(seller_id:self.id, final:false).each do |connection|
+      ary << User.find_by(id: connection.buyer_id)
+    end
+
+    ary
+
   end
+
+
 
 end

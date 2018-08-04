@@ -42,6 +42,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def inbox
+  end
+
   private
 
   def user_params
