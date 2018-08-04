@@ -21,5 +21,6 @@ Rails.application.routes.draw do
   get '/services/:id', to: "services#show"
   get "/service/:id/purchase", to: "services#purchase"
   get "/messages/received", to: 'messages#getReceivedMessages'
+  get "/userService/approve/:id", to: "user_services#approve"
 
 end

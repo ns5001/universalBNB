@@ -1,5 +1,5 @@
 class UserServiceSerializer < ActiveModel::Serializer
-  attributes :final
+  attributes :final, :id
 
   belongs_to :service
   belongs_to :buyer
