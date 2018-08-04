@@ -26,7 +26,6 @@ function getServices() {
 		url: '/services.json',
 		success: function(response) {
 			var html = ``
-			debugger;
 			for (var i=0;i<response.length;i++) {
 				if (response[i].purchased == false) {
 					html+= `<div class="aService" id="${response[i].id}">`

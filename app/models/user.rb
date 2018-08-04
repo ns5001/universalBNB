@@ -15,6 +15,14 @@ class User < ApplicationRecord
   has_many :received_messages, class_name: 'Message', foreign_key: :receiver_id
 
 
+  def inProgressBuying
+    UserService.where(buyer_id:self.id, final:false)
+  end
+
+  def inProgressSelling
+    UserService.where(seller_id:self.id, final:false)
+  end
+
   def sent_messages
     self.messages.where(reply: false)
   end

@@ -26,6 +26,22 @@ class UsersController < ApplicationController
     end
   end
 
+  def getInProgressBuying
+    if current_user
+      respond_to do |format|
+        format.json {render json: current_user.inProgressBuying}
+       end
+    end
+  end
+
+  def getInProgressSelling
+    if current_user
+      respond_to do |format|
+        format.json {render json: current_user.inProgressSelling}
+       end
+    end
+  end
+
   private
 
   def user_params

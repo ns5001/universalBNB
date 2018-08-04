@@ -2,11 +2,61 @@ $(document).on('turbolinks:load', function() {
   getSold();
   getBought();
   displayReceivedMessages()
+  getInProgressBuying()
+  getInProgressSelling()
 })
 
 function getSold() {
 
 }
+
+
+function getInProgressBuying() {
+  $.ajax({
+      type: 'get',
+      url: '/inProgressBuying',
+      success: function(response) {
+
+        var html = `<table>
+        <tr>
+          <th>Name</th>
+          <th>Seller</th>
+          <th>Price</th>
+        </tr>`
+        for (var i=0;i<response.length;i++) {
+          html += `<tr>${response[i].service.name}</tr>`
+          html += `<tr>${response[i].seller.firstName} ${response[i].seller.lastName}</tr>`
+          html += `<tr>${response[i].service.price}</tr>`
+        }
+        html += `</table>`
+        $('#inProgressBuying').append(html)
+      }
+    })
+}
+
+function getInProgressSelling() {
+  $.ajax({
+      type: 'get',
+      url: '/inProgressSelling',
+      success: function(response) {
+debugger;
+        var html = `<table>
+        <tr>
+          <th>Name</th>
+          <th>Buyer</th>
+          <th>Price</th>
+        </tr>`
+        for (var i=0;i<response.length;i++) {
+          html += `<tr>${response[i].service.name}</tr>`
+          html += `<tr>${response[i].buyer.firstName} ${response[i].buyer.lastName}</tr>`
+          html += `<tr>${response[i].service.price}</tr>`
+        }
+        html += `</table>`
+        $('#inProgressSelling').append(html)
+      }
+    })
+}
+
 
 function getBought() {
   $.ajax({

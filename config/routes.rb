@@ -12,8 +12,10 @@ Rails.application.routes.draw do
   resources :users
   resources :services
 
-  get '/users/sold', to: "users#getSold"
+  get '/sold', to: "users#getSold"
   get '/bought', to: "users#getBought"
+  get '/inProgressBuying', to: "users#getInProgressBuying"
+  get '/inProgressSelling', to: "users#getInProgressSelling"
 
   get '/services/new', to: "services#new"
   get '/services/:id', to: "services#show"

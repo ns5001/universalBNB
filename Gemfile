@@ -23,7 +23,7 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 gem 'rb-readline'
 gem 'active_model_serializers'
-
+gem "paperclip"
 
 gem 'pry'
 gem 'webpacker'
