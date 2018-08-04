@@ -1,4 +1,5 @@
 {
+  "license": "ISC",
   "dependencies": {
     "@rails/webpacker": "3.5",
     "babel-preset-react": "^6.24.1",
