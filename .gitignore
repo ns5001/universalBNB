@@ -25,5 +25,9 @@
 
 # Ignore Gemfile.lock
 Gemfile.lock
-node_modules/
+/public/packs
+/public/packs-test
+/node_modules
+yarn-debug.log*
+.yarn-integrity
 yarn.lock

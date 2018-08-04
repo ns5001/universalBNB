@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <h3><%=@service.name%></h3>
-    <h5>Offered by <%=@service.seller%></h5>
-  </body>
-</html>
+<h3><%=@service.name%></h3>
+<p><%=@service.detail%></p>
+<p><%=@service.price%></p>
+<p>Sold by: <%=@service.user.firstName%></p>
+
+<% if (@service.user != current_user) %>
+  <a href="/service/<%=@service.id%>/purchase">Purchase</a>
+<% end %>

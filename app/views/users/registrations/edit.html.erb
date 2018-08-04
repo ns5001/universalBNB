@@ -31,6 +31,14 @@
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
 
+  <div class="field">
+    <%= f.select :gender, ['Male', 'Female', 'Other'], :placeholder => "gender" %>
+  </div>
+
+  <div class="field">
+    <%= f.text_area :bio, size: "50x3", :placeholder => "bio" %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Update" %>
   </div>

@@ -1,0 +1,25 @@
+%nav#topNav.navbar.navbar-default
+  .container-fluid
+    .navbar-header
+      %button.navbar-toggle.collapsed{"data-target" => "#bs-navbar", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      .navbar-header{:style => "font-family:Chathura"}
+        %a.navbar-brand{:href => "/", :style => "font-family:Chathura"}
+          %span
+            %i.ion-ios-analytics-outline
+            Universal BNB
+      %a.navbar-brand.page-scroll{:href => "/", :style => "font-family:Chathura"}
+    #bs-navbar.navbar-collapse.collapse
+      %ul.nav.navbar-nav.navbar-right
+        %li= link_to "Home", root_path
+        - if user_signed_in?
+          %li
+            %a.page-scroll{:href => "/logout", :method => "delete"} Sign Out
+        - else
+          %li
+            %a.page-scroll{:href => "/users/sign_in", :method => "delete"} Login
+          %li
+            %a.page-scroll{:href => "/users/sign_up", :method => "delete"} Register
