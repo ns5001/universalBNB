@@ -5,14 +5,39 @@
     %meta{:charset => "utf-8"}/
     %title Universal BNB
   %body
-    %div
-      %h2 Welcome!
-    .services
-      %table
-        = Service.all.each do |service|
-          %tr
-            %td Name:
-            %td= service.name
-            %td Price:
-            %td= service.price
-          %tr
+    %div.container-fluid
+      %div
+        .main.col-md-12
+          .content.col-md-12
+            .outer.col-md-12
+              .inner.col-md-5
+                %p
+                  stuff
+              .inner.col-md-1
+              .inner.col-md-5
+                %p
+                  stuff
+          .content.col-md-12
+            %p These Are some Words Again
+            .outer.col-md-12
+              .inner.col-md-12
+                %p
+                  stuff
+          .content.col-md-12
+            %p These Are some Words Again
+            .outer.col-md-12
+              .inner.col-md-12
+                %p
+                  stuff
+
+
+
+    -#.services
+    -#  %table
+    -#    = Service.all.each do |service|
+    -#      %tr
+    -#        %td Name:
+    -#        %td= service.name
+    -#        %td Price:
+    -#        %td= service.price
+    -#      %tr

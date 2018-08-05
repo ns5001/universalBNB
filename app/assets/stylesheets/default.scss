@@ -1,0 +1,59 @@
+$primrose_light_grey: #e5e5e5;
+$primrose_crimson: #ea3057;
+$primrose_black: #191919;
+$primrose_dark_grey: #5b5553;
+$primrose_mod_grey: #b1a7a5;
+$nav_height: 5em;
+// Default Pallete
+.primrose_light_grey { color: #e5e5e5 !important;}
+.primrose_crimson { color: #ea3057 !important;}
+.primrose_black { color: #191919 !important;}
+.primrose_dark_grey { color: #5b5553 !important;}
+.primrose_mod_grey { color: #b1a7a5 !important;}
+
+nav{
+  background: $primrose_dark_grey;
+
+}
+
+body {
+  font-family: Lato;
+  font-weight: normal;
+  font-size: 16px;
+  background: $primrose_light_grey;
+}
+
+.main{
+  padding-top: $nav_height;
+  padding-left: 80px !important;
+  padding-right: 80px !important;
+}
+
+.content{
+  background: white;
+  color: $primrose_crimson;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  -webkit-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+
+  .outer{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    height: 17em;
+    padding: .5em;
+  }
+
+  .inner {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    background: $primrose_light_grey;
+    padding: 2em;
+    height: 100%;
+  }
+}
