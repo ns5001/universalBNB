@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get "/messages/sent", to: 'messages#getSentMessages'
   get "messages/:id/message_data", to: 'messages#message_data'
   get "/messages/chain/:id", to: 'messages#messageHistory'
-  get "/messages/createReply", to: "messages#createReply"
+  post "/messages/createReply", to: "messages#createReply"
 
   resources :messages
 

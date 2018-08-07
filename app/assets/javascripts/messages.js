@@ -74,14 +74,25 @@ function replyMessage() {
 		$(document).on('click','.reply-message',function(event) {
 		event.preventDefault()
 		$(`div#received-message-${this.id}`).toggle()
-		var serializedData = $(this).parent().serialize()
+
+		var sendInfo = {
+				sender: $(`#sender_id${this.id}`)[0].value,
+				content: $(`#content${this.id}`)[0].value,
+				message_id: this.id,
+				current_user: $(`#current_user${this.id}`)[0].value
+		};
+
 		$.ajax({
 			type: 'post',
-			url: '/messages.json',
+			url: '/messages/createReply',
 			datatype: "json",
-			data: serializedData,
+			data: sendInfo,
 			success: function(response) {
 				alert('Reply Sent!')
+				document.location.reload()
+			},
+			error: function(response) {
+				debugger;
 			}
 		})
 	})
@@ -169,13 +180,13 @@ function receivedMessages(response) {
 	$('.receivedMessages').html('')
 	 debugger;
 	for(var i=0;i<response.length;i++) {
-		html += `<div id="received-message-${response[i].id}"<p>You receieved a message from ${response[i].user.name}</p>`
+		html += `<div id="received-message-${response[i].id}"<p>You receieved a message from ${response[i].user.firstName} ${response[i].user.lastName}</p>`
 		html += `<p> <img src="${response[i].user.profile_pic}"></p>`
 		html += `<p><h4>${response[i].content}</h4></p>`
-
 		html += `<form>`
-		html += `<input type="hidden" name="message_id" class="message_id" value="${response[i].id}">`
-		html += `<input type="text", name="content">`
+		html += `<input type="hidden" id="sender_id${response[i].id}" value="${response[i].user.id}">`
+		html += `<input type="hidden" id="current_user${response[i].id}" value="${response[i].receiver.id}">`
+		html += `<input type="text" id="content${response[i].id}">`
 		html += `<button class="reply-message" id="${response[i].id}" type="submit">Reply</button>`
 		html += `</form>`
 
@@ -194,7 +205,7 @@ function sentMessages(response) {
 	for(var i=0;i<response.length;i++) {
 		debugger;
 		html += `<div id="sent-message-${response[i].id}">
-						<p>You sent a message to ${response[i].receiver.name}</p>`
+						<p>You sent a message to ${response[i].receiver.firstName} ${response[i].receiver.lastName}</p>`
 		html += `<p> <img src="${response[i].receiver.profile_pic}"></p>`
 		html += `<p><h4>${response[i].content}</h4></p>`
 

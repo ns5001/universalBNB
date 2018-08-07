@@ -31,9 +31,15 @@ ActiveRecord::Schema.define(version: 21170130204509) do
   end
 
   create_table "services", force: :cascade do |t|
-    t.string   "type",                 default: "", null: false
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.string   "service_type"
+    t.text     "detail"
+    t.string   "name"
+    t.integer  "price"
+    t.integer  "user_id"
+    t.boolean  "purchased"
+    t.string   "location"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.bigint   "picture_file_size"
@@ -41,10 +47,12 @@ ActiveRecord::Schema.define(version: 21170130204509) do
   end
 
   create_table "user_services", force: :cascade do |t|
-    t.integer  "user_id"
+    t.integer  "seller_id"
+    t.integer  "buyer_id"
     t.integer  "service_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "final",      default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -58,6 +66,13 @@ ActiveRecord::Schema.define(version: 21170130204509) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "firstName"
+    t.string   "lastName"
+    t.integer  "age"
+    t.string   "gender"
+    t.string   "bio"
+    t.string   "username"
+    t.integer  "rating"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
     t.string   "profile_pic_file_name"
