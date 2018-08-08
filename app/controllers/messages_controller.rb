@@ -22,15 +22,6 @@ class MessagesController < ApplicationController
   def create
     Message.create(message_params)
     redirect_to "/users/inbox"
-    # if params[:message_id]
-    #   @message = Message.createReply(params)
-    # else
-    #   @message = ''
-    # end
-    # respond_to do |format|
-    #   format.html { render :show }
-    #   format.json { render json: @message}
-    # end
   end
 
   def show

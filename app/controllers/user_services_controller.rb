@@ -1,7 +1,6 @@
 class UserServicesController < ApplicationController
 
   def approve
-    binding.pry
     @userService = UserService.find_by_id(params[:id])
     @userService.final = true;
     @userService.save
