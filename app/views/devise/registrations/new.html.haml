@@ -1,0 +1,51 @@
+.main.container-fluid
+  .col-md-5.col-md-offset-4
+    .login
+      %h2 Sign up
+      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        = devise_error_messages!
+        .field
+          = f.label :"First Name"
+          %br/
+          = f.text_field :firstName, :placeholder => "First Name"
+        .field
+          = f.label :"Last Name"
+          %br/
+          = f.text_field :lastName, :placeholder => "Last Name"
+        .field
+          = f.label :"Username"
+          %br/
+          = f.text_field :username, :placeholder => "Username"
+        .field
+          = f.label :email
+          %br/
+          = f.email_field :email, autofocus: true, autocomplete: "email"
+        .field
+          = f.label :password
+          - if @minimum_password_length
+            %em
+              (#{@minimum_password_length} characters minimum)
+          %br/
+          = f.password_field :password, autocomplete: "off"
+        .field
+          = f.label :password_confirmation
+          %br/
+          = f.password_field :password_confirmation, autocomplete: "off"
+        .field
+          = f.label :"Age"
+          %br/
+          = f.text_field :age, :placeholder => "age"
+        .field
+          = f.label :"Gender"
+          %br/
+          = f.select :gender, ['Male', 'Female', 'Other'], :placeholder => "gender"
+        .field
+          = f.label :"Bio"
+          %br/
+          = f.text_area :bio, size: "50x3", :placeholder => "bio"
+        .field
+          = f.label :profile_pic
+          = f.file_field :profile_pic
+        .actions
+          = f.submit "Sign up"
+      = render "devise/shared/links"

@@ -25,6 +25,7 @@ body {
 
 .main{
   padding-top: $nav_height;
+  padding-bottom: $nav_height;
   padding-left: 80px !important;
   padding-right: 80px !important;
 }
@@ -52,8 +53,37 @@ body {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 
-    background: $primrose_light_grey;
+    background: white;
     padding: 2em;
     height: 100%;
   }
+}
+
+.login {
+  background: white;
+  color: $primrose_crimson;
+  margin-top: 4em;
+  padding: 2em;
+  -webkit-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+}
+
+.field {
+  // maybe style the text boxes a bit more later
+  margin-top: 1em;
+  margin-bottom: 1em;
+
+  input {
+    color: $primrose_black !important;
+  }
+}
+
+input {
+  color: $primrose_black !important;
+}
+
+.actions {
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
