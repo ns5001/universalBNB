@@ -22,9 +22,9 @@ function getSold() {
       </tr>`
 
       for (var i=0;i<response.length;i++) {
-        html += `<tr>${response[i].service.name}</tr>`
-        html += `<tr>${response[i].buyer.firstName} ${response[i].buyer.lastName}</tr>`
-        html += `<tr>${response[i].service.price}</tr>`
+        html += `<tr><td>${response[i].service.name}</td>`
+        html += `<td>${response[i].buyer.firstName} ${response[i].buyer.lastName}</td>`
+        html += `<td>${response[i].service.price}</td></tr>`
       }
       html += `</table><br><br>`
       $('#sold').append(html)
@@ -47,9 +47,9 @@ function getInProgressBuying() {
           <th>Price</th>
         </tr>`
         for (var i=0;i<response.length;i++) {
-          html += `<tr>${response[i].service.name}</tr>`
-          html += `<tr>${response[i].seller.firstName} ${response[i].seller.lastName}</tr>`
-          html += `<tr>${response[i].service.price}</tr>`
+          html += `<tr><td>${response[i].service.name}</td>`
+          html += `<td>${response[i].seller.firstName} ${response[i].seller.lastName}</td>`
+          html += `<td>${response[i].service.price}</td></tr>`
         }
         html += `</table><br><br>`
         $('#inProgressBuying').append(html)
