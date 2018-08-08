@@ -1,16 +1,18 @@
 $(document).on('turbolinks:load', function() {
+   if(document.body.className == "userShowPage"){
   getSold();
   getBought();
   getInProgressBuying();
   getInProgressSelling();
+  }
 })
-
 
 function getSold() {
   $.ajax({
     type: 'get',
     url: '/sold',
     success: function(response) {
+      $('#sold')[0].innerHTML = ``
       var html = ``
       html += `<h3>Your Sold services:</h3><table>
       <tr>
@@ -32,11 +34,12 @@ function getSold() {
 
 
 function getInProgressBuying() {
+
   $.ajax({
       type: 'get',
       url: '/inProgressBuying',
       success: function(response) {
-
+        $('#inProgressBuying')[0].innerHTML = ``
         var html = `<h3>Services your are buying:</h3><table>
         <tr>
           <th>Name</th>
@@ -48,18 +51,20 @@ function getInProgressBuying() {
           html += `<tr>${response[i].seller.firstName} ${response[i].seller.lastName}</tr>`
           html += `<tr>${response[i].service.price}</tr>`
         }
-        html += `</table>`
+        html += `</table><br><br>`
         $('#inProgressBuying').append(html)
       }
     })
 }
 
 function getInProgressSelling() {
+
   $.ajax({
       type: 'get',
       url: '/inProgressSelling',
       success: function(response) {
-
+        $('#inProgressSelling')[0].innerHTML = ``
+        var html = ``
         var html = `<h3>Services your are selling:</h3><table>
         <tr>
           <th>Service Name</th>
@@ -67,14 +72,14 @@ function getInProgressSelling() {
           <th>Price</th>
         </tr>`
 
-        var html = ``
+
         for (var i=0;i<response.length;i++) {
           html += `<div id="inProgress${response[i].id}"><tr>${response[i].service.name}</tr>`
           html += `<tr>${response[i].buyer.firstName} ${response[i].buyer.lastName}</tr>`
           html += `<tr>${response[i].service.price}</tr>`
           html += `<button onClick="approve_submit(${response[i].id})">Approve</button></div>`
         }
-        html += `</table>`
+        html += `</table><br><br>`
         $('#inProgressSelling').append(html)
       }
     })
@@ -98,7 +103,7 @@ function getBought() {
   		type: 'get',
   		url: '/bought',
   		success: function(response) {
-
+        $('#bought')[0].innerHTML = ``
         var html = ``
         html += `<h3>Services you have bought:</h3><table>
         <tr>
@@ -112,7 +117,7 @@ function getBought() {
           html += `<td>${response[i].seller.firstName} ${response[i].seller.lastName} </td>`
           html += `<td>${response[i].service.price} </td></tr>`
         }
-        html += `</table>`
+        html += `</table><br><br>`
         $('#bought').append(html)
       },
       error: function(response) {

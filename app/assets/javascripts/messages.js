@@ -62,9 +62,6 @@ function replyMessage() {
 			success: function(response) {
 				alert('Reply Sent!')
 				document.location.reload()
-			},
-			error: function(response) {
-				debugger;
 			}
 		})
 	})
@@ -95,7 +92,6 @@ function displayReceivedMessages() {
 function receivedMessages(response) {
 	var html = ''
 	$('.receivedMessages').html('')
-	 debugger;
 	for(var i=0;i<response.length;i++) {
 		html += `<div id="received-message-${response[i].id}"<p>You receieved a message from ${response[i].user.firstName} ${response[i].user.lastName}</p>`
 		html += `<p> <img src="${response[i].user.profile_pic}"></p>`
@@ -120,7 +116,7 @@ function sentMessages(response) {
 	var html = ''
 	$('.sentMessages').html('')
 	for(var i=0;i<response.length;i++) {
-		debugger;
+
 		html += `<div id="sent-message-${response[i].id}">
 						<p>You sent a message to ${response[i].receiver.firstName} ${response[i].receiver.lastName}</p>`
 		html += `<p> <img src="${response[i].receiver.profile_pic}"></p>`
