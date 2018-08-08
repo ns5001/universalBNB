@@ -1,14 +1,33 @@
 $(document).on('turbolinks:load', function() {
   getSold();
   getBought();
-  displayReceivedMessages();
   getInProgressBuying();
   getInProgressSelling();
-  replyMessage();
 })
 
-function getSold() {
 
+function getSold() {
+  $.ajax({
+    type: 'get',
+    url: '/sold',
+    success: function(response) {
+      var html = ``
+      html += `<h3>Your Sold services:</h3><table>
+      <tr>
+        <th>Service Name</th>
+        <th>Buyer</th>
+        <th>Price</th>
+      </tr>`
+
+      for (var i=0;i<response.length;i++) {
+        html += `<tr>${response[i].service.name}</tr>`
+        html += `<tr>${response[i].buyer.firstName} ${response[i].buyer.lastName}</tr>`
+        html += `<tr>${response[i].service.price}</tr>`
+      }
+      html += `</table><br><br>`
+      $('#sold').append(html)
+    }
+  })
 }
 
 
@@ -18,7 +37,7 @@ function getInProgressBuying() {
       url: '/inProgressBuying',
       success: function(response) {
 
-        var html = `<table>
+        var html = `<h3>Services your are buying:</h3><table>
         <tr>
           <th>Name</th>
           <th>Seller</th>
@@ -40,6 +59,14 @@ function getInProgressSelling() {
       type: 'get',
       url: '/inProgressSelling',
       success: function(response) {
+
+        var html = `<h3>Services your are selling:</h3><table>
+        <tr>
+          <th>Service Name</th>
+          <th>Buyer</th>
+          <th>Price</th>
+        </tr>`
+
         var html = ``
         for (var i=0;i<response.length;i++) {
           html += `<div id="inProgress${response[i].id}"><tr>${response[i].service.name}</tr>`
@@ -47,13 +74,13 @@ function getInProgressSelling() {
           html += `<tr>${response[i].service.price}</tr>`
           html += `<button onClick="approve_submit(${response[i].id})">Approve</button></div>`
         }
+        html += `</table>`
         $('#inProgressSelling').append(html)
       }
     })
 }
 
 function approve_submit(service_id) {
-  debugger;
   $("#inProgress"+service_id)[0].hidden = true;
   $.ajax({
     type: 'get',
@@ -66,16 +93,30 @@ function approve_submit(service_id) {
 
 
 function getBought() {
+
   $.ajax({
   		type: 'get',
   		url: '/bought',
   		success: function(response) {
-        var html = `<table>`
+
+        var html = ``
+        html += `<h3>Services you have bought:</h3><table>
+        <tr>
+          <th>Name</th>
+          <th>Seller</th>
+          <th>Price</th>
+        </tr>`
+
         for (var i=0;i<response.length;i++) {
-         // html += `<tr>${response[i].receiver.username}</tr>`
+          html += `<tr><td>${response[i].service.name} </td>`
+          html += `<td>${response[i].seller.firstName} ${response[i].seller.lastName} </td>`
+          html += `<td>${response[i].service.price} </td></tr>`
         }
         html += `</table>`
         $('#bought').append(html)
+      },
+      error: function(response) {
+
       }
     })
 }
@@ -88,51 +129,4 @@ function displayReceivedMessages() {
 			receivedMessages(response)
 		}
 	})
-}
-
-function replyMessage() {
-		$(document).on('click','.reply-message',function(event) {
-      debugger;
-      event.preventDefault()
-
-      var sendInfo = {
-          content: $("#reply")[0].value
-          message_id: $(".message_id")[0].value
-      };
-      debugger;
-		$(`div#received-message-${this.id}`).toggle()
-		$.ajax({
-			type: 'get',
-			url: '/messages/createReply',
-			datatype: "json",
-			data: sendInfo,
-			success: function(response) {
-				alert('Reply Sent!')
-			}
-		})
-	})
-}
-
-function receivedMessages(response) {
-  	debugger
-	var html = ''
-	$('.receivedMessages').html(``)
-
-	for(var i=0;i<response.length;i++) {
-
-		html += `<div id="received-message-${response[i].id}"<p>You receieved a message from ${response[i].user.firstName} ${response[i].user.lastName}</p>`
-		html += `<p><h4>${response[i].content}</h4></p>`
-
-    html += `<form>`
-		html += `<input type="hidden" class="message_id" value="${response[i].id}">`
-		html += `<input id="reply" type="text", name="content">`
-		html += `<button class="reply-message" id="${response[i].id}" type="submit">Reply</button>`
-    html += `</form>`
-
-		html += `<button type="submit" class="delete-received-message" id="${response[i].id}">delete</button>`
-
-		html += `</div>`
-	}
-
-	$('.receivedMessages').append(html)
 }

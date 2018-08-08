@@ -9,11 +9,17 @@ class User < ApplicationRecord
 
   has_many :services
   has_many :user_services
-  has_many :bought, :class_name => "UserService", foreign_key: 'buyer_id'
-  has_many :sold, :class_name => "UserService", foreign_key: 'seller_id'
   has_many :messages
   has_many :received_messages, class_name: 'Message', foreign_key: :receiver_id
 
+
+  def getSold
+    UserService.where(seller_id:self.id, final:true)
+  end
+
+  def getBought
+    UserService.where(buyer_id:self.id, final:true)
+  end
 
   def inProgressBuying
     UserService.where(buyer_id:self.id, final:false)

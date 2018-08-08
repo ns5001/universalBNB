@@ -55,7 +55,10 @@ class MessagesController < ApplicationController
   end
 
   def createReply
-    binding.pry
+    message = Message.create(user_id: params[:current_user], receiver_id: params[:sender], content: params[:content])
+    message.save
+    message = Message.find_by(id: params[:message_id])
+    message.destroy
   end
 
   def new

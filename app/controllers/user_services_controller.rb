@@ -1,9 +1,22 @@
 class UserServicesController < ApplicationController
 
   def approve
+    binding.pry
     @userService = UserService.find_by_id(params[:id])
     @userService.final = true;
     @userService.save
+  end
+
+  def getBought
+    respond_to do |format|
+      format.json { render json: current_user.getBought }
+    end
+  end
+
+  def getSold
+    respond_to do |format|
+      format.json { render json: current_user.getSold }
+    end
   end
 
 end

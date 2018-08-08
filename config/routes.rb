@@ -13,8 +13,8 @@ Rails.application.routes.draw do
   resources :users
   resources :services
 
-  get '/sold', to: "users#getSold"
-  get '/bought', to: "users#getBought"
+  get '/sold', to: "user_services#getSold"
+  get '/bought', to: "user_services#getBought"
   get '/inProgressBuying', to: "users#getInProgressBuying"
   get '/inProgressSelling', to: "users#getInProgressSelling"
 
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get "/messages/sent", to: 'messages#getSentMessages'
   get "messages/:id/message_data", to: 'messages#message_data'
   get "/messages/chain/:id", to: 'messages#messageHistory'
-  get "/messages/createReply", to: "messages#createReply"
+  post "/messages/createReply", to: "messages#createReply"
 
   resources :messages
 
