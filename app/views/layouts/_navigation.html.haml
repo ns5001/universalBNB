@@ -10,13 +10,18 @@
         %a.navbar-brand{:href => "/", :style => "font-family:Chathura"}
           %span
             %i.ion-ios-analytics-outline
-            %a.navbar-brand{:href => "/"} Universal BNB
+            Universal BNB
       %a.navbar-brand.page-scroll{:href => "/", :style => "font-family:Chathura"}
     #bs-navbar.navbar-collapse.collapse
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           %li
             %a.page-scroll{:href => "/logout", :method => "delete"} Sign Out
+          - if current_user
+            %li= link_to "MyProfile", user_path(current_user)
+          - else
+            %li
+              %a{:href => "/users/sign_up", :method => "get"} Create Account
         - else
           %li
             %a.page-scroll{:href => "/users/sign_in", :method => "delete"} Login

@@ -67,6 +67,14 @@ body {
   -webkit-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
   box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+
+  h2 {
+    span {
+      display:inline-block;
+      border-bottom:2px solid $primrose_dark_grey;
+      padding-bottom:3px;
+    }
+  }
 }
 
 .field {
@@ -83,7 +91,32 @@ input {
   color: $primrose_black !important;
 }
 
+form {
+  input, select {
+    color: $primrose_black !important;
+    margin-left: 1em;
+  }
+}
+
 .actions {
   margin-top: 1em;
   margin-bottom: 1em;
 }
+
+.section {
+  color: $primrose_light_grey;
+  background: $primrose_dark_grey;
+  table {
+    tbody {
+      tr {
+        th {
+          margin: 2em;
+        }
+      }
+    }
+  }
+  #inbox{
+
+  }
+}
+
