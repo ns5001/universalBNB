@@ -29,6 +29,7 @@ class ServicesController < ApplicationController
       redirect_to "/users/sign_in"
     else
       @service = Service.find(params[:id]);
+      @service.purchased = true
       @service.save
       @userService = UserService.new()
       @userService.seller_id = @service.user_id

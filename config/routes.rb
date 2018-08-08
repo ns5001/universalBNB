@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get "messages/:id/message_data", to: 'messages#message_data'
   get "/messages/chain/:id", to: 'messages#messageHistory'
   post "/messages/createReply", to: "messages#createReply"
+  get "/userService/reject/:id", to: "user_services#reject"
 
   resources :messages
 

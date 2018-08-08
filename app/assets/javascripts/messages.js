@@ -116,7 +116,6 @@ function sentMessages(response) {
 	var html = ''
 	$('.sentMessages').html('')
 	for(var i=0;i<response.length;i++) {
-
 		html += `<div id="sent-message-${response[i].id}">
 						<p>You sent a message to ${response[i].receiver.firstName} ${response[i].receiver.lastName}</p>`
 		html += `<p> <img src="${response[i].receiver.profile_pic}"></p>`

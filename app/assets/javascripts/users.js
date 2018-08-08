@@ -32,7 +32,6 @@ function getSold() {
   })
 }
 
-
 function getInProgressBuying() {
 
   $.ajax({
@@ -73,10 +72,11 @@ function getInProgressSelling() {
         <th>Price</th></tr>`
 
         for (var i=0;i<response.length;i++) {
-          html += `<tr id="inProgressSelling${response[i].service.id}"><td>${response[i].service.name}</td>`
+          html += `<tr id="inProgressSelling${response[i].id}"><td>${response[i].service.name}</td>`
           html += `<td>${response[i].buyer.firstName} ${response[i].buyer.lastName}</td>`
           html += `<td>${response[i].service.price}</td>`
-          html += `<td><button onClick="approve_submit(${response[i].id})">Approve</button></td></tr>`
+          html += `<td><button onClick="approve_submit(${response[i].id})">Approve</button></td>`
+          html += `<td><button onClick="reject_submit(${response[i].id})">Reject</button></td></tr>`
         }
         html += `</table><br><br>`
         $('#inProgressSelling').append(html)
@@ -90,6 +90,17 @@ function approve_submit(service_id) {
     url : "/userService/approve/"+service_id,
     success: function(response) {
       alert("Approved!");
+      $(`#inProgressSelling${service_id}`)[0].style.display = "none"
+    }
+  })
+}
+
+function reject_submit(service_id) {
+  $.ajax({
+    type: 'get',
+    url : "/userService/reject/"+service_id,
+    success: function(response) {
+      alert("Rejected!");
       $(`#inProgressSelling${service_id}`)[0].style.display = "none"
     }
   })
