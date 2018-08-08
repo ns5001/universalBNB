@@ -15,8 +15,12 @@
 //= require turbolinks
 //= require_tree .
 
+
+
 $(document).on('turbolinks:load', function() {
-	getServices();
+	if(document.body.className == "indexPage"){
+		getServices();
+	}
 });
 
 function getServices() {
