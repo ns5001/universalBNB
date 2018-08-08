@@ -120,13 +120,3 @@ function getBought() {
       }
     })
 }
-
-function displayReceivedMessages() {
-	$.ajax({
-		type: 'get',
-		url: '/messages/received',
-		success: function(response) {
-			receivedMessages(response)
-		}
-	})
-}
