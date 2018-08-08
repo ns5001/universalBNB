@@ -2,8 +2,11 @@ class UserServicesController < ApplicationController
 
   def approve
     @userService = UserService.find_by_id(params[:id])
-    @userService.final = true;
+    @userService.final = true
     @userService.save
+    @service = Service.find_by_id(@userService.service_id)
+    @service.purchased = true
+    @service.save
   end
 
   def getBought

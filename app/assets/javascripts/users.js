@@ -63,21 +63,20 @@ function getInProgressSelling() {
       type: 'get',
       url: '/inProgressSelling',
       success: function(response) {
+
         $('#inProgressSelling')[0].innerHTML = ``
         var html = ``
-        var html = `<h3>Services your are selling:</h3><table>
+        html += `<h3>Services your are selling:</h3><table>
         <tr>
-          <th>Service Name</th>
-          <th>Buyer</th>
-          <th>Price</th>
-        </tr>`
-
+        <th>Service Name</th>
+        <th>Buyer</th>
+        <th>Price</th></tr>`
 
         for (var i=0;i<response.length;i++) {
-          html += `<div id="inProgress${response[i].id}"><tr>${response[i].service.name}</tr>`
-          html += `<tr>${response[i].buyer.firstName} ${response[i].buyer.lastName}</tr>`
-          html += `<tr>${response[i].service.price}</tr>`
-          html += `<button onClick="approve_submit(${response[i].id})">Approve</button></div>`
+          html += `<tr id="inProgressSelling${response[i].service.id}"><td>${response[i].service.name}</td>`
+          html += `<td>${response[i].buyer.firstName} ${response[i].buyer.lastName}</td>`
+          html += `<td>${response[i].service.price}</td>`
+          html += `<td><button onClick="approve_submit(${response[i].id})">Approve</button></td></tr>`
         }
         html += `</table><br><br>`
         $('#inProgressSelling').append(html)
@@ -86,12 +85,12 @@ function getInProgressSelling() {
 }
 
 function approve_submit(service_id) {
-  $("#inProgress"+service_id)[0].hidden = true;
   $.ajax({
     type: 'get',
     url : "/userService/approve/"+service_id,
     success: function(response) {
       alert("Approved!");
+      $(`#inProgressSelling${service_id}`)[0].style.display = "none"
     }
   })
 }
