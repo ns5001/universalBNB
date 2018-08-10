@@ -1,0 +1,18 @@
+<%= form_for Message.new do |f| %>
+
+  <div class="field">
+    <%= f.collection_select :receiver_id, User.all,:id,:username, required: true%>
+  </div>
+
+  <%= f.hidden_field :user_id, value: @user.id%>
+
+  <div class="field">
+    <%= f.label :Message %><br />
+    <%= f.text_field :content, required: true%>
+  </div><br />
+
+
+  <div class="actions">
+    <%= f.submit "Send Message" %>
+  </div>
+<% end %>

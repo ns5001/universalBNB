@@ -20,6 +20,7 @@ class MessagesController < ApplicationController
   end
 
   def create
+    binding.pry
     Message.create(message_params)
     redirect_to "/users/inbox"
   end
@@ -59,7 +60,7 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:receiver, :content, :message_type, :accept, :master_message_id, :connection_id, :user_id)
+    params.require(:message).permit(:receiver_id, :content, :user_id)
   end
 
 end

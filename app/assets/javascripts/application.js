@@ -16,7 +16,7 @@
 //= require_tree .
 
 $(document).on('turbolinks:load', function() {
-	if(document.body.className == "indexPage"){
+	if(document.body.className == "indexPage") {
 		getServices();
 	}
 });
@@ -30,6 +30,7 @@ function getServices() {
 			var html = ``
 			for (var i=0;i<response.length;i++) {
 				if (response[i].purchased == false) {
+					debugger;
 					html+= `<div class="aService" id="${response[i].id}">`
 					html+= `<p>${response[i].name}</p>`
 					html+= `<p>Price: ${response[i].price}</p>`

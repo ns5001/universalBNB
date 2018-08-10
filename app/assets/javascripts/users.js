@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function() {
-   if(document.body.className == "userShowPage"){
+   if(document.body.className == "userShowPage") {
   getSold();
   getBought();
   getInProgressBuying();
@@ -105,7 +105,6 @@ function reject_submit(service_id) {
     }
   })
 }
-
 
 function getBought() {
 
