@@ -15,17 +15,9 @@ ActiveRecord::Schema.define(version: 21170130204509) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "connections", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "receiver_id"
-    t.boolean "status",      default: false
-  end
-
   create_table "messages", force: :cascade do |t|
     t.integer "user_id"
     t.string  "content"
-    t.boolean "reply",             default: false
-    t.integer "connection_id"
     t.integer "receiver_id"
   end
 

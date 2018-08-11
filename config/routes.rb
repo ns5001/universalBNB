@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   get "/messages/chain/:id", to: 'messages#messageHistory'
   post "/messages/createReply", to: "messages#createReply"
   get "/userService/reject/:id", to: "user_services#reject"
+  get "/services/edit/:id", to: "services#edit"
+  get "/notYetPurchased", to: "services#notYetPurchased"
 
   resources :messages
 
