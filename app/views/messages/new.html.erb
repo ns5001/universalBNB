@@ -1,11 +1,10 @@
-
 <%= form_for Message.new do |f| %>
 
   <div class="field">
-    <%= f.collection_select :receiver_id, @user.potentialConnections,:id,:firstName,required: true%>
+    <%= f.collection_select :receiver_id, User.all,:id,:username, required: true%>
   </div>
 
-  <%= f.hidden_field :user_id, value: @user%>
+  <%= f.hidden_field :user_id, value: @user.id%>
 
   <div class="field">
     <%= f.label :Message %><br />

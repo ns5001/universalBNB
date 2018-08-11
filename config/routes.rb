@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root :to =>'application#index'
+  root 'application#index'
 
   devise_scope :user do
     get '/logout',  :to => 'sessions#destroy'
@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get "messages/:id/message_data", to: 'messages#message_data'
   get "/messages/chain/:id", to: 'messages#messageHistory'
   post "/messages/createReply", to: "messages#createReply"
+  get "/userService/reject/:id", to: "user_services#reject"
 
   resources :messages
 

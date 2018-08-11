@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 21170130204509) do
     t.boolean "reply",             default: false
     t.integer "connection_id"
     t.integer "receiver_id"
-    t.integer "master_message_id"
   end
 
   create_table "services", force: :cascade do |t|

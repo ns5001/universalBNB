@@ -20,17 +20,9 @@ class MessagesController < ApplicationController
   end
 
   def create
+    binding.pry
     Message.create(message_params)
     redirect_to "/users/inbox"
-    # if params[:message_id]
-    #   @message = Message.createReply(params)
-    # else
-    #   @message = ''
-    # end
-    # respond_to do |format|
-    #   format.html { render :show }
-    #   format.json { render json: @message}
-    # end
   end
 
   def show
@@ -68,7 +60,7 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:receiver, :content, :message_type, :accept, :master_message_id, :connection_id, :user_id)
+    params.require(:message).permit(:receiver_id, :content, :user_id)
   end
 
 end
