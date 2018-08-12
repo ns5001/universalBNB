@@ -26,13 +26,11 @@ class ServicesController < ApplicationController
   end
 
   def update
-    binding.pry
     @service = Service.find_by(id: params[:id])
     @service.name = params["service"][:name]
     @service.price = params["service"][:price]
     @service.detail = params["service"][:detail]
     @service.save
-    binding.pry
     redirect_to "/users/show"
   end
 
