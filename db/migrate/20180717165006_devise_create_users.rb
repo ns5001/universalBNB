@@ -38,6 +38,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string :bio
       t.string :username
       t.integer :rating, array: true, default: []
+      t.integer :average_rating, default: 0
 
       t.timestamps null: false
     end

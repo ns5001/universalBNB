@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 21170130204509) do
     t.string   "bio"
     t.string   "username"
     t.integer  "rating",                   default: [],              array: true
+    t.integer  "average_rating",           default: 0
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
     t.string   "profile_pic_file_name"

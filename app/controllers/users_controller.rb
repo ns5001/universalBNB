@@ -56,6 +56,13 @@ before_action :authenticate_user!
     @user.save
     @userService = UserService.find_by(id: params[:user][:user_service_id])
     @userService.rated = true
+    binding.pry
+    sum = 0.00
+    @user.rating.each do |rating|
+        sum = sum + rating
+    end
+    @user.average_rating = (sum / @user.rating.count).round(2)
+    binding.pry
     @userService.save
     redirect_to "/users/show"
   end

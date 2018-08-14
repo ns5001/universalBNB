@@ -11,8 +11,9 @@ class ServicesController < ApplicationController
   end
 
   def notYetPurchased
+  
     respond_to do |format|
-      format.json {render json: current_user.notYetPurchased}
+      format.json { render json: current_user.notYetPurchased }
     end
   end
 
