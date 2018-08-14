@@ -20,6 +20,12 @@ before_action :authenticate_user!
     end
   end
 
+  def rate
+    @user_service = UserService.find_by(id: params[:id])
+    @user = User.find_by(id: @user_service.seller_id)
+  end
+
+
   def getBought
     if current_user
       respond_to do |format|
@@ -42,6 +48,16 @@ before_action :authenticate_user!
         format.json {render json: current_user.inProgressSelling}
        end
     end
+  end
+
+  def update
+    @user = User.find_by(id: params[:user][:user_id])
+    @user.rating << params[:user][:rating]
+    @user.save
+    @userService = UserService.find_by(id: params[:user][:user_service_id])
+    @userService.rated = true
+    @userService.save
+    redirect_to "/users/show"
   end
 
   def inbox

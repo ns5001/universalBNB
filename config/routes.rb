@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   get "/userService/reject/:id", to: "user_services#reject"
   get "/services/edit/:id", to: "services#edit"
   get "/notYetPurchased", to: "services#notYetPurchased"
+  get "/rateUser/:id", to: "users#rate"
 
   resources :messages
 

@@ -29,6 +29,14 @@ class User < ApplicationRecord
     UserService.where(seller_id:self.id, final:false)
   end
 
+  def average_rating
+    sum = 0.00
+    ratings.each do |rating|
+        sum += rating
+    end
+    !(ratings.empty?) ? (sum / ratings.count).round(2) : 0.0
+  end
+
   def sent_messages
     self.messages.where(reply: false)
   end
@@ -40,7 +48,5 @@ class User < ApplicationRecord
   def notYetPurchased
     Service.where(user_id:self.id, purchased:false)
   end
-
-
 
 end

@@ -21,7 +21,7 @@ class UserServicesController < ApplicationController
       format.json { render json: current_user.getBought }
     end
   end
-
+  
   def getSold
     respond_to do |format|
       format.json { render json: current_user.getSold }

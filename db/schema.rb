@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 21170130204509) do
   create_table "messages", force: :cascade do |t|
     t.integer "user_id"
     t.string  "content"
+    t.boolean "reply",       default: false
     t.integer "receiver_id"
   end
 
@@ -41,6 +42,7 @@ ActiveRecord::Schema.define(version: 21170130204509) do
     t.integer  "seller_id"
     t.integer  "buyer_id"
     t.integer  "service_id"
+    t.boolean  "rated",      default: false
     t.boolean  "final",      default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
@@ -63,7 +65,7 @@ ActiveRecord::Schema.define(version: 21170130204509) do
     t.string   "gender"
     t.string   "bio"
     t.string   "username"
-    t.integer  "rating"
+    t.integer  "rating",                   default: [],              array: true
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
     t.string   "profile_pic_file_name"

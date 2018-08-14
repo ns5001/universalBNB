@@ -147,13 +147,15 @@ function getBought() {
           <th>Seller</th>
           <th>Price</th>
         </tr>`
-
         for (var i=0;i<response.length;i++) {
           html += `<tr><td>${response[i].service.name} </td>`
           html += `<td>${response[i].seller.firstName} ${response[i].seller.lastName} </td>`
-          html += `<td>${response[i].service.price} </td></tr>`
+          html += `<td>${response[i].service.price} </td>`
+          if (response[i].rated == false) {
+          html += `<td><a href="/rateUser/${response[i].id}">Rate ${response[i].seller.firstName}</a></td>`
+          }
         }
-        html += `</table><br><br>`
+        html += `</tr></table><br><br>`
         $('#bought').append(html)
       },
       error: function(response) {
