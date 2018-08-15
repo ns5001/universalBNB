@@ -1,16 +1,18 @@
-%h2.primrose_crimson
-  Welcome back #{@user.firstName} #{@user.lastName}!
-%a{:href => "/services/new", :class => "btn btn-default"} Create a service
-.section
-  #inbox
-.section.col-md-12
-  #sold
-#bought
-#inProgressBuying
-#inProgressSelling
-Add Friends
-%form.searchNames
-  %input#user_name{:name => "user_name", :placeholder => "Enter Name", :type => "text"}/
-  %button{:name => "button", :type => "submit"} Search
-#foundNames
-%a.btn.btn-default{:href => "/users/inbox"} Messages
+= javascript_pack_tag 'user_comp'
+#userShowPage
+  %h2.primrose_crimson
+    Welcome back #{@user.firstName} #{@user.lastName}!
+  %a{:href => "/services/new", :class => "btn btn-default"} Create a service
+  .section
+    #inbox
+  .section.col-md-12
+    #sold
+  #bought
+  #inProgressBuying
+  #inProgressSelling
+  Add Friends
+  %form.searchNames
+    %input#user_name{:name => "user_name", :placeholder => "Enter Name", :type => "text"}/
+    %button{:name => "button", :type => "submit"} Search
+  #foundNames
+  %a.btn.btn-default{:href => "/users/inbox"} Messages
