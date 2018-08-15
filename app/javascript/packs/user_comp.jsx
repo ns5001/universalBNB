@@ -60,7 +60,7 @@ class UserTable extends React.Component {
     }
 
     componentDidMount(){
-        this.get('/NotYetPurchased', resp => {
+        this.get('/notYetPurchased', resp => {
             this.setState({"inProgressSelling": {error: resp.error, isLoaded: resp.isLoaded, items: resp.items} })
         });
     }
@@ -76,11 +76,8 @@ class UserTable extends React.Component {
                 <div>
                     <ul>
                     {items.map(item => {
-                        <li key={ item.service.name}>
-                            {item.service.id} {item.service.name} {item.service.price}  {item.buyer.firstName} {item.buyer.lastName}
-                        </li>
+                        return <li > {item.id} {item.name} {item.price} </li>
                     } )}
-
                     </ul>
                 </div>
             )
