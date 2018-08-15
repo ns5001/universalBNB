@@ -4,8 +4,36 @@ $(document).on('turbolinks:load', function() {
   getBought();
   getInProgressBuying();
   getInProgressSelling();
+  getNotPurchasedYet();
   }
 })
+
+
+function getNotPurchasedYet() {
+  $.ajax({
+    type: 'get',
+    url: '/notYetPurchased',
+    success: function(response) {
+      $('#notYetPurchased')[0].innerHTML = ``
+      var html = ``
+      html += `<h3>Your services not purchased yet</h3><table>
+      <tr>
+        <th>Service Name</th>
+        <th>Description</th>
+        <th>Price</th>
+      </tr>`
+
+      for(var i=0;i<response.length;i++) {
+        html += `<tr><td>${response[i].name}</td>`
+        html += `<td>${response[i].detail}</td>`
+        html += `<td>${response[i].price}</td>`
+        html += `<td><a href="/services/edit/${response[i].id}">Edit</a></td></tr>`
+      }
+      html += `</table><br><br>`
+      $('#notYetPurchased').append(html)
+    }
+  })
+}
 
 function getSold() {
   $.ajax({
@@ -33,7 +61,6 @@ function getSold() {
 }
 
 function getInProgressBuying() {
-
   $.ajax({
       type: 'get',
       url: '/inProgressBuying',
@@ -120,13 +147,15 @@ function getBought() {
           <th>Seller</th>
           <th>Price</th>
         </tr>`
-
         for (var i=0;i<response.length;i++) {
           html += `<tr><td>${response[i].service.name} </td>`
           html += `<td>${response[i].seller.firstName} ${response[i].seller.lastName} </td>`
-          html += `<td>${response[i].service.price} </td></tr>`
+          html += `<td>${response[i].service.price} </td>`
+          if (response[i].rated == false) {
+          html += `<td><a href="/rateUser/${response[i].id}">Rate ${response[i].seller.firstName}</a></td>`
+          }
         }
-        html += `</table><br><br>`
+        html += `</tr></table><br><br>`
         $('#bought').append(html)
       },
       error: function(response) {

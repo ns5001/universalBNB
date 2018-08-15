@@ -1,0 +1,11 @@
+<%= form_for(@user) do |f| %>
+
+  <%= f.label :rating %>
+  <%= f.select :rating, [1,2,3,4,5], :placeholder => "Rating" %>
+
+  <%= f.hidden_field :user_id, :value => @user.id %>
+  <%= f.hidden_field :user_service_id, :value => @user_service.id %>
+
+  <%= f.submit "Save changes", class: "btn btn-primary" %>
+
+<% end %>

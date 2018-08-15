@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+before_action :authenticate_user!
+
   def index
     respond_to do |format|
       format.json { render json: User.all}
@@ -17,6 +19,12 @@ class UsersController < ApplicationController
        end
     end
   end
+
+  def rate
+    @user_service = UserService.find_by(id: params[:id])
+    @user = User.find_by(id: @user_service.seller_id)
+  end
+
 
   def getBought
     if current_user
@@ -40,6 +48,23 @@ class UsersController < ApplicationController
         format.json {render json: current_user.inProgressSelling}
        end
     end
+  end
+
+  def update
+    @user = User.find_by(id: params[:user][:user_id])
+    @user.rating << params[:user][:rating]
+    @user.save
+    @userService = UserService.find_by(id: params[:user][:user_service_id])
+    @userService.rated = true
+    binding.pry
+    sum = 0.00
+    @user.rating.each do |rating|
+        sum = sum + rating
+    end
+    @user.average_rating = (sum / @user.rating.count).round(2)
+    binding.pry
+    @userService.save
+    redirect_to "/users/show"
   end
 
   def inbox

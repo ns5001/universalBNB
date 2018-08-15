@@ -37,22 +37,8 @@ class User < ApplicationRecord
     Message.where(receiver_id:self.id, reply:false)
   end
 
-
-  def potentialConnections
-    ary = []
-
-    UserService.where(buyer_id:self.id, final:false).each do |connection|
-      ary << User.find_by(id: connection.seller_id)
-    end
-
-    UserService.where(seller_id:self.id, final:false).each do |connection|
-      ary << User.find_by(id: connection.buyer_id)
-    end
-
-    ary
-
+  def notYetPurchased
+    Service.where(user_id:self.id, purchased:false)
   end
-
-
 
 end
