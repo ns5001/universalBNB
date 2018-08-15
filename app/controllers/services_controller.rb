@@ -10,8 +10,28 @@ class ServicesController < ApplicationController
     end
   end
 
+  def notYetPurchased
+  
+    respond_to do |format|
+      format.json { render json: current_user.notYetPurchased }
+    end
+  end
+
+  def edit
+    @service = Service.find(params[:id])
+  end
+
   def create
     Service.create(service_params)
+    redirect_to "/users/show"
+  end
+
+  def update
+    @service = Service.find_by(id: params[:id])
+    @service.name = params["service"][:name]
+    @service.price = params["service"][:price]
+    @service.detail = params["service"][:detail]
+    @service.save
     redirect_to "/users/show"
   end
 
@@ -47,7 +67,7 @@ class ServicesController < ApplicationController
   end
 
   def service_params
-    params.require(:service).permit(:service_type, :detail, :name, :price, :user_id, :purchased)
+    params.require(:service).permit(:service_type, :detail, :name, :price, :user_id, :purchased, :id)
   end
 
 end

@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+
   def index
     respond_to do |format|
       format.html { render :show }
@@ -20,7 +21,6 @@ class MessagesController < ApplicationController
   end
 
   def create
-    binding.pry
     Message.create(message_params)
     redirect_to "/users/inbox"
   end

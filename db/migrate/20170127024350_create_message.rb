@@ -3,8 +3,7 @@ class CreateMessage < ActiveRecord::Migration[5.0]
     create_table :messages do |t|
       t.integer "user_id"
       t.string  "content"
-      t.boolean "reply",             default: false
-      t.integer "connection_id"
+      t.boolean "reply", default: false
       t.integer "receiver_id"
     end
   end
