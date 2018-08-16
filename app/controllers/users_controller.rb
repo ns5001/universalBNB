@@ -15,11 +15,13 @@ before_action :authenticate_user!
     @user = current_user
   end
 
+  # Attains the user_service object in additon to the seller as an object
   def rate
     @user_service = UserService.find_by(id: params[:id])
     @user = User.find_by(id: @user_service.seller_id)
   end
 
+  # Returns the Services that the User is purchasing but not yet finalized
   def getInProgressBuying
     if current_user
       respond_to do |format|
@@ -28,6 +30,7 @@ before_action :authenticate_user!
     end
   end
 
+  # Returns the Services that the User is selling but not yet finalized
   def getInProgressSelling
     if current_user
       respond_to do |format|
@@ -36,6 +39,7 @@ before_action :authenticate_user!
     end
   end
 
+  # Updates the User with a new rating and calculates the new sum with that rating
   def update
     @user = User.find_by(id: params[:user][:user_id])
     @user.rating << params[:user][:rating]
@@ -57,6 +61,7 @@ before_action :authenticate_user!
 
   private
 
+  # User params with required parameters
   def user_params
     params.require(:user).permit(:age, :gender, :age, :firstName, :bio, :username, :lastName)
   end
