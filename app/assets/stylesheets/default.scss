@@ -94,7 +94,16 @@ input {
 form {
   input, select {
     color: $primrose_black !important;
+    //margin-top: 1em;
+    margin-bottom: 1em;
+  }
+}
+
+.register {
+  input, select {
+    color: $primrose_black !important;
     margin-left: 1em;
+
   }
 }
 
@@ -120,3 +129,6 @@ form {
   }
 }
 
+.padding-top-5{
+  padding-top: 5em;
+}
