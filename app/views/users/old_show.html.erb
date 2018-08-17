@@ -1,6 +1,11 @@
 <body class="userShowPage">
 
   <h3>Welcome back <%=@user.firstName%> <%=@user.lastName%>!</h3>
+  <% if @user.average_rating > 0 %>
+    <h5>Your average rating: <%=@user.average_rating%></h5>
+  <% else %>
+    <h5>No one has rated you yet</h5>
+  <% end %>
 
   <a href="/services/new">Create a service</a>
 
