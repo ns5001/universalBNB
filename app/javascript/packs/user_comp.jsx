@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
 class  Table extends React.Component{
+    // componentDidUpdate(prevProps){
+    //     if(this.props.data !== this.prevProps.data){
+    //         this.fetchDate
+    //     }
+    // }
     render() {
         const headings = this.props.headings; // Array
         const data = this.props.data; // Object
@@ -12,26 +17,26 @@ class  Table extends React.Component{
                 <thead>
                 <tr>
                 { headings.map( heading => {
-                    return <th> {heading} </th>
+                    return <th key={Math.random()}> {heading} </th>
                 })}
                 </tr>
                 </thead>
                 <tbody>
                     { data.map( i => {
                         return(
-                        <tr key={i.id}>
+                        <tr key={Math.random()}>
                             { fields.map( field => {
                                 if(field === "edit"){
-                                    return <td><a href={"/services/edit/" + i.id}>Edit</a></td>
+                                    return <td key={Math.random()}><a href={"/services/edit/" + i.id}>Edit</a></td>
                                 }
                                 else if(field === "approve") {
-                                    return <td><a href={"/userService/approve/" + i.service_id}>Approve</a></td>
+                                    return <td key={Math.random()}><a onClick={ _ => {fetch("/userService/approve/" + i.id)}} >Approve</a></td>
                                 }
                                 else if(field === "reject") {
-                                    return <td><a href={"/userService/reject/" + i.service_id}>Reject</a></td>
+                                    return <td key={Math.random()}><a onClick={_ => {fetch("/userService/reject/" + i.id)}} >Reject</a></td>
                                 }
                                 else{
-                                    return <td>{ i[field] }</td>
+                                    return <td key={Math.random()}>{ i[field] }</td>
                                 }
 
                             }) }
@@ -169,7 +174,7 @@ class UserTable extends React.Component {
                     cb({items: [], error: error, isLoaded: true});
             })
     }
-
+    // component will unmount
     componentDidMount(){
         this.get('/notYetPurchased', resp => {
             this.setState({"notYetPurchased": {error: resp.error, isLoaded: resp.isLoaded, items: resp.items} })
