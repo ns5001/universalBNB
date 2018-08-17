@@ -42,16 +42,17 @@ function deleteSentMessage() {
 	})
 }
 
+// ES5
 function replyMessage() {
-		$(document).on('click','.reply-message',function(event) {
-		event.preventDefault()
-		$(`div#received-message-${this.id}`).toggle()
+	$(document).on('click', '.reply-message', function (event) {
+		event.preventDefault();
+		$('div#received-message-' + this.id).toggle();
 
 		var sendInfo = {
-				sender: $(`#sender_id${this.id}`)[0].value,
-				content: $(`#content${this.id}`)[0].value,
-				message_id: this.id,
-				current_user: $(`#current_user${this.id}`)[0].value
+			sender: $('#sender_id' + this.id)[0].value,
+			content: $('#content' + this.id)[0].value,
+			message_id: this.id,
+			current_user: $('#current_user' + this.id)[0].value
 		};
 
 		$.ajax({
@@ -59,13 +60,39 @@ function replyMessage() {
 			url: '/messages/createReply',
 			datatype: "json",
 			data: sendInfo,
-			success: function(response) {
-				alert('Reply Sent!')
-				document.location.reload()
+			success: function success(response) {
+				alert('Reply Sent!');
+				document.location.reload();
 			}
-		})
-	})
+		});
+	});
 }
+
+// ES6
+// function replyMessage() {
+// 		$(document).on('click','.reply-message',function(event) {
+// 		event.preventDefault()
+// 		$(`div#received-message-${this.id}`).toggle()
+//
+// 		var sendInfo = {
+// 				sender: $(`#sender_id${this.id}`)[0].value,
+// 				content: $(`#content${this.id}`)[0].value,
+// 				message_id: this.id,
+// 				current_user: $(`#current_user${this.id}`)[0].value
+// 		};
+//
+// 		$.ajax({
+// 			type: 'post',
+// 			url: '/messages/createReply',
+// 			datatype: "json",
+// 			data: sendInfo,
+// 			success: function(response) {
+// 				alert('Reply Sent!')
+// 				document.location.reload()
+// 			}
+// 		})
+// 	})
+// }
 
 function displaySentMessages() {
 	$.ajax({
@@ -88,43 +115,84 @@ function displayReceivedMessages() {
 	})
 }
 
-
+//ES5
 function receivedMessages(response) {
-	var html = ''
-	$('.receivedMessages').html('')
-	for(var i=0;i<response.length;i++) {
-		html += `<div class="message col-md-4 primrose_black" id="received-message-${response[i].id}">`
+	var html = '';
+	$('.receivedMessages').html('');
+	for (var i = 0; i < response.length; i++) {
+		html += '<div class="message col-md-4 primrose_black" id="received-message-' + response[i].id + '">';
 		// html += `<p> <img src="${response[i].user.profile_pic}"></p>`
-        html += `<h3 class="primrose_crimson margin-bottom-1">From ${response[i].user.firstName} ${response[i].user.lastName}: </h3>`
-        html += `<p><h4>${response[i].content}</h4></p>`
-		html += `<form>`
-		html += `<input type="hidden" id="sender_id${response[i].id}" value="${response[i].user.id}">`
-		html += `<input type="hidden" id="current_user${response[i].id}" value="${response[i].receiver.id}">`
-		html += `<textarea class="primrose_black" id="content${response[i].id}" />`
-		html += `</form>`
+		html += '<h3 class="primrose_crimson margin-bottom-1">From ' + response[i].user.firstName + ' ' + response[i].user.lastName + ': </h3>';
+		html += '<p><h4>' + response[i].content + '</h4></p>';
+		html += '<form>';
+		html += '<input type="hidden" id="sender_id' + response[i].id + '" value="' + response[i].user.id + '">';
+		html += '<input type="hidden" id="current_user' + response[i].id + '" value="' + response[i].receiver.id + '">';
+		html += '<textarea class="primrose_black" id="content' + response[i].id + '" />';
+		html += '</form>';
 
-		html += `<button type="submit" class="delete-received-message btn btn-danger margin-right-2 margin-top-2" id="${response[i].id}">delete</button>`
-        html += `<button class="reply-message btn btn-default margin-right-2 margin-top-2" id="${response[i].id}" type="submit">Reply</button>`
-		html += `</div>`
+		html += '<button type="submit" class="delete-received-message btn btn-danger margin-right-2 margin-top-2" id="' + response[i].id + '">delete</button>';
+		html += '<button class="reply-message btn btn-default margin-right-2 margin-top-2" id="' + response[i].id + '" type="submit">Reply</button>';
+		html += '</div>';
 	}
 
-	$('.receivedMessages').append(html)
+	$('.receivedMessages').append(html);
 }
 
+//ES6
+// function receivedMessages(response) {
+// 	var html = ''
+// 	$('.receivedMessages').html('')
+// 	for(var i=0;i<response.length;i++) {
+// 		html += `<div class="message col-md-4 primrose_black" id="received-message-${response[i].id}">`
+// 		// html += `<p> <img src="${response[i].user.profile_pic}"></p>`
+//         html += `<h3 class="primrose_crimson margin-bottom-1">From ${response[i].user.firstName} ${response[i].user.lastName}: </h3>`
+//         html += `<p><h4>${response[i].content}</h4></p>`
+// 		html += `<form>`
+// 		html += `<input type="hidden" id="sender_id${response[i].id}" value="${response[i].user.id}">`
+// 		html += `<input type="hidden" id="current_user${response[i].id}" value="${response[i].receiver.id}">`
+// 		html += `<textarea class="primrose_black" id="content${response[i].id}" />`
+// 		html += `</form>`
+//
+// 		html += `<button type="submit" class="delete-received-message btn btn-danger margin-right-2 margin-top-2" id="${response[i].id}">delete</button>`
+//         html += `<button class="reply-message btn btn-default margin-right-2 margin-top-2" id="${response[i].id}" type="submit">Reply</button>`
+// 		html += `</div>`
+// 	}
+//
+// 	$('.receivedMessages').append(html)
+// }
 
+// ES5
 function sentMessages(response) {
-	var html = ''
-	$('.sentMessages').html('')
-	for(var i=0;i<response.length;i++) {
-		html += `<div class="message col-md-4 primrose_black" id="sent-message-${response[i].id}">`
+	var html = '';
+	$('.sentMessages').html('');
+	for (var i = 0; i < response.length; i++) {
+		html += '<div class="message col-md-4 primrose_black" id="sent-message-' + response[i].id + '">';
 		// html += `<p> <img src="${response[i].receiver.profile_pic}"></p>`
-        html += `<h3 class="primrose_crimson margin-bottom-1">Sent to ${response[i].receiver.firstName} ${response[i].receiver.lastName}: </h3>`
-        html += `<h4>${response[i].content}</h4>`
+		html += '<h3 class="primrose_crimson margin-bottom-1">Sent to ' + response[i].receiver.firstName + ' ' + response[i].receiver.lastName + ': </h3>';
+		html += '<h4>' + response[i].content + '</h4>';
 
-		html += `<button type="submit" class="delete-sent-message btn btn-danger margin-right-2 margin-top-2" id="${response[i].id}">delete</button>`
+		html += '<button type="submit" class="delete-sent-message btn btn-danger margin-right-2 margin-top-2" id="' + response[i].id + '">delete</button>';
 
-		html += `</div>`
+		html += '</div>';
 	}
 
-	$('.sentMessages').append(html)
+	$('.sentMessages').append(html);
 }
+
+// ES6
+// function sentMessages(response) {
+// 	var html = ''
+// 	$('.sentMessages').html('')
+// 	for(var i=0;i<response.length;i++) {
+// 		html += `<div class="message col-md-4 primrose_black" id="sent-message-${response[i].id}">`
+// 		// html += `<p> <img src="${response[i].receiver.profile_pic}"></p>`
+//         html += `<h3 class="primrose_crimson margin-bottom-1">Sent to ${response[i].receiver.firstName} ${response[i].receiver.lastName}: </h3>`
+//         html += `<h4>${response[i].content}</h4>`
+//
+// 		html += `<button type="submit" class="delete-sent-message btn btn-danger margin-right-2 margin-top-2" id="${response[i].id}">delete</button>`
+//
+// 		html += `</div>`
+// 	}
+//
+// 	$('.sentMessages').append(html)
+// }
