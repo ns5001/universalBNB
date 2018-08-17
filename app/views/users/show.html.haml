@@ -1,0 +1,21 @@
+= javascript_pack_tag 'user_comp'
+#userShowPage
+  .col-md-12
+    %h2.primrose_crimson
+      Welcome back #{@user.firstName} #{@user.lastName}!
+    .rating
+      - if @user.average_rating > 0
+        %h5
+          Your average rating: #{@user.average_rating}
+      - else
+        %h5 No one has rated you yet
+  .col-md-12
+    %a.btn.btn-default.margin-right-2{:href => "/services/new"} Create a service
+    %a.btn.btn-default.margin-right-2{:href => "/users/inbox"} Messages
+    .section
+      #inbox
+
+  #tables.col-md-12.padding-top-2
+
+  .col-md-12
+

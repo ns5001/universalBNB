@@ -1,0 +1,25 @@
+.col-md-5.col-md-offset-4
+  .login
+    %h2
+      %span Create A Service
+    %br
+    = form_for Service.new, controller: 'services', action: 'create' do |f|
+      = f.label :"Service Type"
+      = f.select :service_type, ['Student Seeking Research', 'Research Opportunity', 'Apartment']
+      %br/
+      %br/
+      = f.label :"Name of service"
+      = f.text_field :name
+      %br/
+      %br/
+      = f.label :"Detail"
+      = f.text_field :detail
+      %br/
+      %br/
+      = f.label :"Price"
+      = f.number_field :price
+      %br/
+      %br/
+      = f.hidden_field :user_id, :value => current_user.id
+      = f.hidden_field :purchased, :value => false
+      = f.submit "create"

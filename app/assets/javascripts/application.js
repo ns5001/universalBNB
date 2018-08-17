@@ -15,30 +15,30 @@
 //= require turbolinks
 //= require_tree .
 
-$(document).on('turbolinks:load', function() {
-	if(document.body.className == "indexPage") {
-		getServices();
-	}
-});
-
-function getServices() {
-	$('#services-list')[0].innerHTML = ``;
-	$.ajax({
-		type: 'get',
-		url: '/services.json',
-		success: function(response) {
-			var html = ``
-			for (var i=0;i<response.length;i++) {
-				if (response[i].purchased == false) {
-					html+= `<div class="aService" id="${response[i].id}">`
-					html+= `<p>${response[i].name}</p>`
-					html+= `<p>Price: ${response[i].price}</p>`
-				  html+= `<h5>Seller: ${response[i].user.email}</h5>`
-					html+= `<a href="/services/${response[i].id}" type="button">More Info</a>`
-					html+= `</div><br>`
-				}
-			}
-			$('#services-list').append(html)
-		}
-	})
-}
+// $(document).on('turbolinks:load', function() {
+// 	if(document.body.className == "indexPage") {
+// 		getServices();
+// 	}
+// });
+//
+// function getServices() {
+// 	$('#services-list')[0].innerHTML = ``;
+// 	$.ajax({
+// 		type: 'get',
+// 		url: '/services.json',
+// 		success: function(response) {
+// 			var html = ``
+// 			for (var i=0;i<response.length;i++) {
+// 				if (response[i].purchased == false) {
+// 					html+= `<div class="aService" id="${response[i].id}">`
+// 					html+= `<p>${response[i].name}</p>`
+// 					html+= `<p>Price: ${response[i].price}</p>`
+// 				  html+= `<h5>Seller: ${response[i].user.email}</h5>`
+// 					html+= `<a href="/services/${response[i].id}" type="button">More Info</a>`
+// 					html+= `</div><br>`
+// 				}
+// 			}
+// 			$('#services-list').append(html)
+// 		}
+// 	})
+//}

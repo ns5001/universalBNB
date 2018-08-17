@@ -1,0 +1,153 @@
+$primrose_light_grey: #e5e5e5;
+$primrose_crimson: #ea3057;
+$primrose_black: #191919;
+$primrose_dark_grey: #5b5553;
+$primrose_mod_grey: #b1a7a5;
+$white: #fff;
+$nav_height: 5em;
+// Default Pallete
+.primrose_light_grey { color: #e5e5e5 !important;}
+.primrose_crimson { color: #ea3057 !important;}
+.primrose_black { color: #191919 !important;}
+.primrose_dark_grey { color: #5b5553 !important;}
+.primrose_mod_grey { color: #b1a7a5 !important;}
+.b_white { background: $white; }
+nav{
+  background: $primrose_dark_grey;
+}
+
+body {
+  font-family: Lato;
+  font-weight: normal;
+  font-size: 16px;
+  background: $white;
+}
+
+.main{
+  padding-top: $nav_height;
+  padding-bottom: $nav_height;
+  padding-left: 80px !important;
+  padding-right: 80px !important;
+}
+
+.content{
+  background: white;
+  color: $primrose_crimson;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  -webkit-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+
+  .outer{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    height: 17em;
+    padding: .5em;
+  }
+
+  .inner {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    background: white;
+    padding: 2em;
+    height: 100%;
+  }
+}
+
+.login {
+  background: white;
+  color: $primrose_crimson;
+  margin-top: 4em;
+  padding: 2em;
+  -webkit-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+
+  h2 {
+    span {
+      display:inline-block;
+      border-bottom:2px solid $primrose_dark_grey;
+      padding-bottom:3px;
+    }
+  }
+}
+
+.field {
+  // maybe style the text boxes a bit more later
+  margin-top: 1em;
+  margin-bottom: 1em;
+
+  input {
+    color: $primrose_black !important;
+  }
+}
+
+input {
+  color: $primrose_black !important;
+}
+
+form {
+  input, select {
+    color: $primrose_black !important;
+    //margin-top: 1em;
+    margin-bottom: 1em;
+  }
+}
+
+.register {
+  input, select {
+    color: $primrose_black !important;
+    margin-left: 1em;
+
+  }
+}
+
+.actions {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.section {
+  color: $primrose_light_grey;
+  background: $primrose_dark_grey;
+  table {
+    tbody {
+      tr {
+        th {
+          margin: 2em;
+        }
+      }
+    }
+  }
+  #inbox{
+
+  }
+}
+
+.padding-top-5{
+  padding-top: 5em;
+}
+.padding-top-2{
+  padding-top: 2em;
+}
+
+.no-padding-left {
+  padding-left: 0 !important;
+}
+
+.margin-right-2 {
+  margin-right: 1em;
+}
+
+.margin-top-2 {
+  margin-top: 1em;
+}
+
+.no-margin-top {
+  margin-top: 0 !important;
+}

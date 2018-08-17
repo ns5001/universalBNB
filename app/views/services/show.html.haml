@@ -1,10 +1,19 @@
-!!!
-%html{:dir => "ltr", :lang => "en"}
-  %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %meta{:charset => "utf-8"}/
-    %title
-  %body
-    %h3= @service.name
-    %h5
-      Offered by #{@service.seller}
+.login.col-md-5.col-md-offset-3
+  %h3= @service.name
+  %p.primrose_black
+    Description:
+    = @service.detail
+  %p.primrose_black
+    Price: $
+    = @service.price
+  %p.primrose_black
+    Sold by: #{@service.user.firstName}
+  - if @service.user.average_rating > 0
+    %p.primrose_black
+      User Rating: #{@service.user.average_rating}
+  - else
+    %p.primrose_black
+      User Rating: User Not Rated yet
+  %p
+  - if (@service.user != current_user)
+    %a{:href => "/service/#{@service.id}/purchase"} Purchase
