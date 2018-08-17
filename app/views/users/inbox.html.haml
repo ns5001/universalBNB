@@ -1,8 +1,10 @@
 %div{:class => "#{controller_name} #{action_name}"}
   %a{:href => "/messages/new"} Create a new message
-  %h2 Received Messages
-  .receivedMessages
-  %br/
-  %h2 Sent Messages
-  .sentMessages
-  %br/
+
+  .col-md-12
+    %h2 Received Messages
+    .receivedMessages
+
+  .col-md-12.padding-top-2
+    %h2 Sent Messages
+    .sentMessages
