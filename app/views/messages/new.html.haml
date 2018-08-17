@@ -1,0 +1,18 @@
+%h2.col-md-6.col-md-offset-2.no-padding-left
+  Create Message
+.login.col-md-6.col-md-offset-2.no-margin-top
+  = form_for Message.new do |f|
+    .field
+      = f.label :User
+      %br/
+      .primrose_black
+        = f.collection_select :receiver_id, User.where.not(id: current_user.id),:id,:username, required: true
+    = f.hidden_field :user_id, value: @user.id
+    .field
+      = f.label :Message
+      %br/
+      .primrose_black
+        = f.text_area :content, required: true
+    %br/
+    .actions
+      = f.submit "Send Message", :class => "btn btn-default"
