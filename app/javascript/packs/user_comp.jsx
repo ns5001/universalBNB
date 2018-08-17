@@ -19,9 +19,21 @@ class  Table extends React.Component{
                 <tbody>
                     { data.map( i => {
                         return(
-                        <tr>
+                        <tr key={i.id}>
                             { fields.map( field => {
-                                return <td>{ i[field] }</td>
+                                if(field === "edit"){
+                                    return <td><a href={"/services/edit/" + i.id}>Edit</a></td>
+                                }
+                                else if(field === "approve") {
+                                    return <td><a href={"/userService/approve/" + i.service_id}>Approve</a></td>
+                                }
+                                else if(field === "reject") {
+                                    return <td><a href={"/userService/reject/" + i.service_id}>Reject</a></td>
+                                }
+                                else{
+                                    return <td>{ i[field] }</td>
+                                }
+
                             }) }
                         </tr>
                         )
@@ -59,7 +71,7 @@ class NotYetPurchasedTable extends React.Component {
         const error = this.props.error;
         const loaded = this.props.isLoaded;
         const headings = ["Service", "Detail", "Price", "Edit"];
-        const fields = ["name", "detail", "price"];
+        const fields = ["name", "detail", "price", "edit"];
         return(
             <div id="notYetPurchased">
                 <h3>Not Yet Purchased</h3>
@@ -91,7 +103,7 @@ class InProgressSellingTable extends React.Component {
         const error = this.props.error;
         const loaded = this.props.isLoaded;
         const headings = ["Service", "Buyer First Name", "Buyer Last Name", "Price", "Approve", "Reject"];
-        const fields = ["service_name", "buyer_firstName", "buyer_lastName", "service_price"];
+        const fields = ["service_name", "buyer_firstName", "buyer_lastName", "service_price", "approve", "reject"];
         return(
             <div id="inProgressSelling">
                 <h3>Pending Sold Services</h3>
@@ -150,7 +162,7 @@ class UserTable extends React.Component {
             .then( resp => resp.json())
             .then(
                 resp => {
-                    console.log(resp);
+                    // console.log(resp);
                     cb({items: resp, error: null, isLoaded: true});
                 }
             ,   error => {
@@ -177,22 +189,6 @@ class UserTable extends React.Component {
     }
 
     render() {
-        // const {error, isLoaded, items} = this.state.notYetPurchased;
-        // if (error) {
-        //     return <div>Error: {error}</div>;
-        // } else if (!isLoaded) {
-        //     return <div>Loading...</div>;
-        // } else{
-        //     return (
-        //         <div>
-        //             <ul>
-        //             {items.map(item => {
-        //                 return <li > {item.id} {item.name} {item.price} </li>
-        //             } )}
-        //             </ul>
-        //         </div>
-        //     )
-        // }
         return(
             <div>
                 <NotYetPurchasedTable

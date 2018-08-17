@@ -1,0 +1,11 @@
+%h2.col-md-6.col-md-offset-2.no-padding-left
+  Edit Service
+.login.col-md-6.col-md-offset-2.no-margin-top
+  = form_for(@service) do |f|
+    = f.label :name
+    = f.text_field :name, class: 'form-control'
+    = f.label :price
+    = f.number_field :price, class: 'form-control'
+    = f.label :detail
+    = f.text_field :detail, class: 'form-control'
+    = f.submit "Save changes", class: "btn"
