@@ -35,6 +35,9 @@ class  Table extends React.Component{
                                 else if(field === "reject") {
                                     return <td key={Math.random()}><a onClick={_ => {fetch("/userService/reject/" + i.id)}} >Reject</a></td>
                                 }
+                                else if(field === "rate"){
+                                    return <td key={Math.random()}><a  href={"/rateUser/" + i.id} >Rate {i.seller_firstName}</a></td>
+                                }
                                 else{
                                     return <td key={Math.random()}>{ i[field] }</td>
                                 }
@@ -124,7 +127,7 @@ class BoughtTable extends React.Component {
         const error = this.props.error;
         const loaded = this.props.isLoaded;
         const headings = ["Service", "Seller First Name", "Seller Last Name", "Price", "Rate"];
-        const fields = ["service_name", "seller_firstName", "seller_lastName", "service_price"];
+        const fields = ["service_name", "seller_firstName", "seller_lastName", "service_price", "rate"];
         return(
             <div id="bought">
                 <h3>Services You Have Bought</h3>
@@ -143,7 +146,7 @@ class SoldTable extends React.Component {
         const fields = ["service_name", "buyer_firstName", "buyer_lastName", "service_price"];
         return(
             <div id="sold">
-                <h3>Services You Have Bought</h3>
+                <h3>Services You Have Sold</h3>
                 <Table headings={headings} data={items} fields={fields} />
             </div>
         );
