@@ -1,7 +1,7 @@
 <%= form_for Message.new do |f| %>
 
   <div class="field">
-    <%= f.collection_select :receiver_id, User.all,:id,:username, required: true%>
+    <%= f.collection_select :receiver_id, User.where.not(id: current_user.id),:id,:username, required: true%>
   </div>
 
   <%= f.hidden_field :user_id, value: @user.id%>
