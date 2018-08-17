@@ -129,6 +129,24 @@ form {
   }
 }
 
+.message{
+  background: white;
+  color: $primrose_crimson;
+  margin-top: 1em;
+  padding: 2em;
+  -webkit-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+
+  h2 {
+    span {
+      display:inline-block;
+      border-bottom:2px solid $primrose_dark_grey;
+      padding-bottom:3px;
+    }
+  }
+}
+
 .padding-top-5{
   padding-top: 5em;
 }
@@ -150,4 +168,7 @@ form {
 
 .no-margin-top {
   margin-top: 0 !important;
+}
+.margin-bottom-1{
+  margin-bottom: 1em;
 }
