@@ -28,13 +28,19 @@ class Service extends React.Component{
         const error = this.props.error;
         const loaded = this.props.isLoaded;
         return items.map( item => {
-            return (
-            <div className="login col-md-7" key={item.id}>
-                <h3 className="primrose_crimson">{item.id} : {item.name} </h3>
-                <h4>Price: {item.price} </h4>
-                <h5>Seller: {item.user_email}</h5>
-                <a href={"/services/" +item.id} type="button">More Info</a>
-            </div>)
+            if(item.purchased){
+                return;
+            }
+            else{
+                return (
+                    <div className="login col-md-7" key={item.id}>
+                        <h3 className="primrose_crimson">{item.id} : {item.name} </h3>
+                        <h4>Price: {item.price} </h4>
+                        <h5>Seller: {item.user_email}</h5>
+                        <a href={"/services/" +item.id} type="button">More Info</a>
+                    </div>
+                )
+            }
         } );
     }
 }
